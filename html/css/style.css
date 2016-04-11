@@ -1,0 +1,174 @@
+/* 
+    Document   : style
+    Created on : Apr 22, 2014, 2:33:29 PM
+    Author     : Norm
+    Description:
+        Purpose of the stylesheet follows.
+*/
+* { margin:0; padding:0; } /* ALL TAGS RESET */
+
+body {
+    background-image: url('../images/repeat_background_gradient_checked.png');
+    background-size: 15%;
+    font-size: 100%;
+    margin: 0;
+}
+#wrapper {
+    width: 80%;
+    max-width: 950px;
+    margin: 10px auto;
+}
+
+#header {
+    background-image: url('../images/types-of-chocolates2.png'), url('../images/headingColor.jpg');
+    background-position: -1% 60%, bottom ;
+    background-repeat: no-repeat, repeat-x;
+    /*background-color: #b8860b;  was 003366 */
+    margin: 0;
+    height: 210px;
+}
+#footer {
+    color: #f5f5f5;
+    font-size: .75em;
+}
+.title {  
+    font-size: 3em;
+    font-weight: normal;
+    color: #ffffff;
+    text-shadow: black 0 0 .35em;
+    padding-top: 160px;
+    padding-left: 20px;
+}
+.salut {
+    font-size: 1.25em;
+    margin: 10px 0;
+    color: #b8860b;
+}
+#section {
+    margin: 0;
+}
+
+.content {
+    background-color: #f5f5f5; 
+    padding: 20px 30px;
+    margin: 10px 0;
+}
+#nav {
+    background-color: #b8860b;
+    padding: 10px 0;
+    text-align: center;
+    line-height: 2em;
+}
+#login {
+    margin: 0 10%;
+}
+
+a.navlink:link {
+    color: #f5f5f5;
+    text-decoration: none;
+}
+a.navlink:visited {
+    color: #f5f5f5;
+    text-decoration: none;
+}
+a.navlink:hover {
+    color: #ccc;
+    background-color: #666;
+    text-decoration: none;
+}
+
+a.navlink {
+    display: inline-block;
+    background-color: #000;
+    margin: 4px 2px;
+    width: 10em;
+    text-transform: uppercase;
+    
+}
+
+#login fieldset p {
+    display: inline-block;
+    width: 39%;
+    margin-left: 5%;
+    margin-right: 5%; 
+}
+#emailP {
+    padding-left: 1%;
+}
+
+#candy, #stock {
+    margin-left: 6%;
+    margin-right: 6%;
+}
+
+#products, #customers, #stocklist {
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 30px;
+
+}
+#products td, #customers td, #stocklist td {
+    padding: 5px;
+}
+#customers th{
+    color: #b8860b;
+}
+#order {
+    width: 100%;
+}
+
+#order, #confirm, .credit{
+    line-height: 1.75em;
+}
+#order td, #confirm td {
+    padding-left: 20px;
+    padding-bottom: 15px;
+}
+#stocklist th {
+    background-color: #f9df9f;
+}
+
+
+table.credit span {
+    margin-right: 20px;
+}
+.credit td {
+    padding-left: 20px;
+    padding-bottom: 5px;
+}
+.col1 {
+    text-align: right;
+}
+.buttons {
+    display: inline-block;
+    padding-top: 25px;
+}
+.receipt {
+    border-color: #b8860b #b2c3d6;
+    border-top: 5px;
+    border-bottom: 5px; 
+    border-right: 1px;
+    border-left: 1px;
+    margin: 15px 0;
+    padding: 20px;
+}
+
+/*****label .error*****/
+
+
+#candy label.error {
+  font-size: 0.8em;
+  color: #F00;
+  font-weight: bold;
+  display: block;
+  margin-top: -5px;
+  margin-bottom: -22px;
+}
+#candy .indSt label.error {
+  margin-top: -10px;
+  margin-left: 100px; /* comes in just under, within td as a label */
+}
+#candy .indCC label.error {
+  margin-top: -10px;
+  margin-left: 75px; /* comes in just under, within td as a label */
+}

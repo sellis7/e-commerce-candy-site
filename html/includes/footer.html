@@ -1,0 +1,156 @@
+<!-- Script 17.2 - footer.html -->
+    </div> <!-- end CONTENT -->
+    <div id="nav">
+<?php
+    //only to display logout button, based on login status
+    if (isset($_SESSION['userAccess'])){ //if logged in
+        //if login is admin, also show additional admin links
+        if ($_SESSION['userAccess'] == 99){
+            echo '<p>';
+            if (basename($_SERVER['PHP_SELF']) == "inventory.php"){
+                echo '<a href="placedOrders.php" class="navlink">Orders Placed</a>  
+                <a href="admin.php" class="navlink">Customers</a></p>';
+            }elseif(basename($_SERVER['PHP_SELF']) == "admin.php")
+                echo '<a href="placedOrders.php" class="navlink">Orders Placed</a>  
+                <a href="inventory.php" class="navlink">Inventory</a></p>';
+            }else{ //placed.Orders.php - updated 04-26
+                echo '<a href="admin.php" class="navlink">Orders Placed</a>  
+                <a href="inventory.php" class="navlink">Inventory</a></p>';
+        } //end of admin access
+        // Add the logout link:
+        echo '<p>
+            <a href="logout.php" class="navlink">Log Out</a></p>';
+        
+    }else{
+        echo '<p><a href="index.php" class="navlink">Home</a></p>'; //updated 04-25
+    }//end of logged in
+?>        
+  </div> <!-- end NAV -->
+</div> <!-- end SECTION -->
+    
+
+  <div id='footer'> 
+    &copy; 2014 S Ellis
+  </div> <!-- end FOOTER -->
+
+</div> <!-- end of WRAPPER -->
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js" charset="utf-8"></script>
+    <script type="text/javascript" src="./js/jquery-validation-1.12.0/lib/jquery.js" charset="utf-8"></script>
+    <script type="text/javascript" src="./js/jquery-validation-1.12.0/dist/jquery.validate.js" charset="utf-8"></script>
+    <script type="text/javascript" charset="utf-8">
+    $(function(){ //serves as login.js script 15.10
+            $('.errorMsg').hide();
+            $('#login').submit(function(){ //event listener/handler
+                var emailJS, passJS;
+                if($('#email').val().length >=6){ //validate email for not being empty
+                    emailJS = $('#email').val();
+                    $('#emailErr').removeClass('error'); //changed from #emailP/#passP
+                    $('#emailErr').hide();   
+                }else {
+                    $('#emailErr').addClass('error'); //changed from #emailP/#passP
+                    $('#emailErr').show();
+                }//end validate email
+                if ($('#password').val().length >4){ //validate password for not being empty
+                    passJS = $('#password').val();
+                    $('#passErr').removeClass('error');
+                    $('#passErr').hide();
+                }else {
+                    $('#passErr').addClass('error');
+                    $('#passErr').show();
+                } //end of validate password
+                if(emailJS && passJS){
+                    var data = new Object(); //create objects for form data
+                    data.email = emailJS;
+                    data.password = passJS;
+                    var options = new Object();
+                    options.data = data;
+                    options.dataType = 'text';
+                    options.type = 'get';
+                    options.success = function(response){
+                        if(response == 'You are now logged in'){
+                            $('#login').hide();
+                            window.location.href = "index.php";
+                        } //hide form and redirect user if logged in
+                    };//end success function
+                    options.url = 'login.php';
+                    $.ajax(options);
+                } //end ajax request if validate variables are set
+                return false; //keeps user on page if login fails
+            }); //end of login event handler
+        }); //end of document ready
+    </script>
+    <script type="text/javascript">
+            $("#candy").validate({
+                 //debug: true,
+                 rules: {
+                     fName: "required",
+                     lName: "required",
+                     addr: "required",
+                     town: "required",
+                     steCode: "required",
+                     zip: "required",
+                     payment: "required",
+                     acctNum: "required",
+                     exp: "required",
+
+                     pass1: "required",
+                email: {
+                    required: true,
+                    email: true
+                    },
+                pass2: {equalTo:'#pass1'},
+                spam: "required"
+                 },
+                 messages: {
+                     email: {
+                         required: "enter email",
+                         email: "need valid email"
+                     },
+                     pass2: {
+                         equalTo: 'passwords do not match'
+                     },
+                     fName: "enter name",
+                     lName: "enter last name",
+                     addr: "enter street address",
+                     town: "enter city",
+                     steCode: "enter state",
+                     zip: "enter zip code",
+                     pass1: "enter password",
+                     acctNum: "enter credit card number",
+                     exp: "enter expiration date"
+                     
+                 },
+                 
+                 errorPlacement: function(error, element) { 
+       if ( element.is(":radio") || element.is(":checkbox")) {
+          error.appendTo( element.parent()); 
+        } else {
+          error.insertAfter(element);
+        } 
+    } //MUST HIDE CANDY FORM IF EVERYTHING VALIDATES!!!!
+            }); 
+    /*$(function(){    
+        $("#candy").validate({
+             rules: {
+                fName: "required",
+                lName: "required",
+                email: {
+                    required: true,
+                    email: true
+                    }
+             },
+             messages: {
+                 fName: "Enter first name",
+                 lName: "Enter last name",
+                 email: "Enter a valid email"      
+             },
+             submitHandler: function(form){
+                 form.submit();
+             }
+                    
+                });
+        });*/
+    </script>
+   
+</body>
+</html>

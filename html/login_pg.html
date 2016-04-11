@@ -1,0 +1,22 @@
+<h1><?php echo "Please log in..." ?></h1>
+<form id="login" action="login_pg.php" method="post"> <!-- ?php echo htmlentities( $_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING'] ); ? -->
+<fieldset>
+    <div>To test- <br />
+        admin: zippy@yahoo.com, pass50 OR client: tired@gmail.com, 50word
+    </div>
+    <p id="emailP">
+        <label for="email">Your Email</label><br />
+        <input id="email" type="email" name="email" size="30" maxlength="60" /><br />
+        <span class="errorMsg" id="emailErr"> Please enter your email address</span>
+        <?php echo (isset($_SESSION['errors']) && !empty($_SESSION['errors']))? '<span class="error">'.$_SESSION['errors'].'</span>': ''; ?>
+    </p>
+    <p id="passP">
+        <label for="password">Account Password</label><br />
+        <input id="password" type="password" name="pass" size="30" maxlength="20" /><br />
+        <span class="errorMsg" id="passErr"> Please enter a password</span>
+    </p>
+</fieldset>
+    <p>
+        <input type="submit" name="submit" value="Log In" />
+    </p>
+</form>

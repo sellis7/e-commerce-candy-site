@@ -1,0 +1,60 @@
+<?php # Script 17.1 - header.html
+/*	File:   index.php
+*	By:     Shaelyn Ellis
+*	Date:   03.15.2014
+* This script...
+* - starts the HTML template.
+* - indicates the encoding using header().
+* - starts the session.
+* - gets the language-specific words from the database.
+* - lists the available languages.
+*
+*=====================================
+*/
+
+session_start();
+
+
+
+// Indicate the encoding:
+header ('Content-Type: text/html; charset=UTF-8');
+
+
+if (basename($_SERVER['PHP_SELF']) == "summary.php" && isset($_SESSION['userAccess'])){
+    $pageTitle = 'Place your order';
+}elseif(basename($_SERVER['PHP_SELF']) == "summary.php"){
+    $pageTitle = 'Your order summary';
+}elseif(basename($_SERVER['PHP_SELF']) == "admin.php" || 
+basename($_SERVER['PHP_SELF']) == "inventory.php" ||
+basename($_SERVER['PHP_SELF']) == "placedOrds.php"){
+    $pageTitle = 'Administration';   
+}else{
+    $pageTitle = 'Login';
+}
+
+//setting up each unique php page title
+if (isset($pageTitle)){
+    $this_pageTitle = "Carrie's Candies – ".$pageTitle;
+}else{
+    $this_pageTitle = "Welcome to Carrie's Candies";
+}
+
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title><?php echo $this_pageTitle; ?></title> <!-- <?php if (isset($pageTitle)) { echo $pageTitle; } ?> KEEP FOR STRUCTURE, IF NEEDED-->
+    <link rel="stylesheet" href="css/style.css" type="text/css" media="screen" />
+</head>
+<body>
+
+<div id='wrapper'>
+
+  <div id='header'> <!-- THIS IS THE HEADER BAR - may want to redesign -->
+    <p class="title"><?php echo $this_pageTitle; ?></p> <!-- <?php echo $words['title']; ?> IF NEEDED FOR STRUCTURE PURPOSES -->
+  </div> <!-- end of HEADER -->
+  
+  <div id='section'> <!-- THIS COMPRISES MAIN CONTENT AND NAV BAR (footer) -->
+    <div class="content"> <!-- start of main body content and linked php files -->
