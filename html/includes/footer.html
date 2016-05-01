@@ -3,33 +3,34 @@
     <div id="nav">
 <?php
     //only to display logout button, based on login status
-    if (isset($_SESSION['userAccess'])){ //if logged in
+    if (isset($_SESSION['userAccess'])){
+        //if logged in
         //if login is admin, also show additional admin links
         if ($_SESSION['userAccess'] == 99){
             echo '<p>';
             if (basename($_SERVER['PHP_SELF']) == "inventory.php"){
-                echo '<a href="placedOrders.php" class="navlink">Orders Placed</a>  
+                echo '<a href="placedOrders.php" class="navlink">Orders Placed</a>
                 <a href="admin.php" class="navlink">Customers</a></p>';
             }elseif(basename($_SERVER['PHP_SELF']) == "admin.php")
-                echo '<a href="placedOrders.php" class="navlink">Orders Placed</a>  
+                echo '<a href="placedOrders.php" class="navlink">Orders Placed</a>
                 <a href="inventory.php" class="navlink">Inventory</a></p>';
             }else{ //placed.Orders.php - updated 04-26
-                echo '<a href="admin.php" class="navlink">Orders Placed</a>  
+                echo '<a href="admin.php" class="navlink">Orders Placed</a>
                 <a href="inventory.php" class="navlink">Inventory</a></p>';
         } //end of admin access
         // Add the logout link:
         echo '<p>
             <a href="logout.php" class="navlink">Log Out</a></p>';
-        
+
     }else{
         echo '<p><a href="index.php" class="navlink">Home</a></p>'; //updated 04-25
     }//end of logged in
-?>        
+?>
   </div> <!-- end NAV -->
 </div> <!-- end SECTION -->
-    
 
-  <div id='footer'> 
+
+  <div id='footer'>
     &copy; 2014 S Ellis
   </div> <!-- end FOOTER -->
 
@@ -40,12 +41,12 @@
     <script type="text/javascript" charset="utf-8">
     $(function(){ //serves as login.js script 15.10
             $('.errorMsg').hide();
-            $('#login').submit(function(){ //event listener/handler
+            $('#login').submit(function(event){ //event listener/handler
                 var emailJS, passJS;
                 if($('#email').val().length >=6){ //validate email for not being empty
                     emailJS = $('#email').val();
                     $('#emailErr').removeClass('error'); //changed from #emailP/#passP
-                    $('#emailErr').hide();   
+                    $('#emailErr').hide();
                 }else {
                     $('#emailErr').addClass('error'); //changed from #emailP/#passP
                     $('#emailErr').show();
@@ -118,18 +119,18 @@
                      pass1: "enter password",
                      acctNum: "enter credit card number",
                      exp: "enter expiration date"
-                     
+
                  },
-                 
-                 errorPlacement: function(error, element) { 
+
+                 errorPlacement: function(error, element) {
        if ( element.is(":radio") || element.is(":checkbox")) {
-          error.appendTo( element.parent()); 
+          error.appendTo( element.parent());
         } else {
           error.insertAfter(element);
-        } 
+        }
     } //MUST HIDE CANDY FORM IF EVERYTHING VALIDATES!!!!
-            }); 
-    /*$(function(){    
+            });
+    /*$(function(){
         $("#candy").validate({
              rules: {
                 fName: "required",
@@ -142,15 +143,15 @@
              messages: {
                  fName: "Enter first name",
                  lName: "Enter last name",
-                 email: "Enter a valid email"      
+                 email: "Enter a valid email"
              },
              submitHandler: function(form){
                  form.submit();
              }
-                    
+
                 });
         });*/
     </script>
-   
+
 </body>
 </html>
